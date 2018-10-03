@@ -1,8 +1,9 @@
 var manX = 270
 var manY = 590
 var manScale = 1
+var manDX = 1
 
-
+var ryan_rightside = 530
 
 
 function setup()
@@ -15,24 +16,33 @@ function setup()
 
 
 
+
+
+
 function draw()
 {
 
 	background(255);
 
 	var mountainHeight = height - 7*height/16
-	var mountainWidth = width - 50
+	var mountainWidth = ryan_rightside - 50
 	var mountainAngle = Math.atan(mountainHeight/mountainWidth)+.065
 
 
 
 	//THE BOULDER HIMSELF (DWAYNE, THE BOULDER, JOHNSON)
-	fill(222, 189, 86)
-	ellipse(305, 350, 315, 315)
+	push();
+		translate(manX, manY);
+		fill(222, 189, 86)
+		ellipse(35, -240, 315, 315)
+	pop();
 
+
+
+//mountain
 
 	fill(94, 160, 212, 120);
-	triangle(50, height, width, height, width, 7*height/16);
+	triangle(50, height, ryan_rightside, height, ryan_rightside, 7*height/16);
 
 //foot ledge
 	push();
@@ -84,11 +94,35 @@ function draw()
 	text("MYTH", 125, 150 )
 
 //MAN
+
+	push();
+		translate(manX, manY);
+		scale(manScale);
+		draw_man(mountainAngle)
+	pop();
+
+	manX += manDX
+	manY -= manDX*(mountainHeight/mountainWidth)
+
+
+//mouse x and y follower
+//	textSize(12)
+//	textStyle(NORMAL)
+//	fill(0)
+//	rect(mouseX +1, mouseY - 20, 80, 20)
+//	fill(255)
+//	text('(' + mouseX + ", " + mouseY + ")", mouseX + 1, mouseY -6)
+
+
+}
+
+
+function draw_man(mountainAngle)
+{
+	//MAN
 	fill(237, 124, 140)
 	push();
 
-		translate(manX, manY);
-		scale(manScale);
 		//torso
 		quad(-130, 0, -135, -100, -90, -80, -100, 10)
 		ellipse(-95, -70, 22, 24)
@@ -184,18 +218,5 @@ function draw()
 		endShape();
 
 	pop();
-
-
-
-
-
-//mouse x and y follower
-//	textSize(12)
-//	textStyle(NORMAL)
-//	fill(0)
-//	rect(mouseX +1, mouseY - 20, 80, 20)
-//	fill(255)
-//	text('(' + mouseX + ", " + mouseY + ")", mouseX + 1, mouseY -6)
-
 
 }
