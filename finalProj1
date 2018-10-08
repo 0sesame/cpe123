@@ -1,0 +1,710 @@
+var manX = 270;
+var manY = 590;
+var moonX=-780;
+var moonY=-1000;
+var manScale = 1
+var manDX = 1
+var moveBoulder;
+var ryan_rightside = 530
+var darkBlue, medBlue, ltBlue;
+var scC = 1.8;
+var xC = 170;
+var yC = 250; 
+var counter=0
+var hasBeenPunched=false;
+function setup()
+{	
+	createCanvas(530*3, 800);
+	darkBlue = color(73,81,156);
+	medBlue = color(73,143,212);
+	ltBlue = color(93,159,218);
+	noStroke();
+}
+
+function draw()
+{
+	ryanSetup();
+	katie();
+	jonathan();
+}
+function jonathan(){
+	push();
+		translate(530*2,0);
+		drawChampion(xC,yC,scC);
+		if (counter<15){
+			counter+=1
+			xC-=1
+		}else if (counter>29){
+			counter=0
+		} else {
+			counter+=1
+			xC+=1
+		}
+	pop();
+
+}
+
+function drawChampion(x,y,scaleC) 
+{
+	fillAndStroke(255,254,242);
+	rect(530*2,0,530,800);
+	fill(106,175,217)
+	textSize(70)
+	textStyle(BOLD)
+	text("UN",30,80)
+	textSize(70)
+	text("HAMPION",90,145)
+	textSize(74)
+	textFont()
+	text("C",38,152)
+	noStroke()
+	push()
+	scale(scaleC)
+	translate(xC,yC)
+	//Right Arm
+	fill(59,32,3)
+	ellipse(56,-30,40)
+	pop()
+	push()
+	scale(scaleC)
+	translate(xC+79,yC-16)
+	fill(59,32,3)
+	rotate(-112*Math.PI/180)
+	arc(-10,0,70,12,0,PI)
+	rotate(100*Math.PI/180)
+	arc(-11,42,40,13,0,PI)
+	pop()
+	push()
+	scale(scaleC)
+	translate(xC,yC)
+	fill(59,32,3)
+	triangle(77,-27,75,30,96,25)
+	//Body
+	fill(59,32,3)
+	triangle(25,64,25,-6,55,-6)
+	rect(-26,-6,55,69)
+	stroke(59,32,3)
+	strokeWeight(10)
+	bezier(-25,59,-35,45,-25,25,-35,-25)
+	rect(-32,-44,90,35)
+	ellipse(-20,0,20)
+	arc(0,60,50,10,0,PI)
+	//R Arm Adjustment
+	rect(45,-21,30,49)
+	//Left arm
+	fill(59,32,3)
+	strokeWeight(2)
+	arc(-50,-27,30,3,0,PI)
+	arc(-78,-28,28,4,0,PI)
+	arc(-50,-48,30,3,PI,0)
+	arc(-78,-48,28,2,PI,0)
+	rect(-92,-47,58,19)
+	//Left glove
+	noStroke()
+	fill(211,67,1)
+	rect(-111,-48,18,22)
+	ellipse(-115,-33,29,30)
+	triangle(-92,-30,-102,-30,-102,-18)
+	rect(-112,-28,10,10)
+	fill(230)
+	ellipse(-105,-28,7,4)
+	fill(255)
+	ellipse(-110,-17,4)
+	//Right Shoe
+	fill(211,67,1)
+	rect(41,163,21,12,10)
+	rect(50,157,12,15)
+	arc(50,156,26,25,-PI/2,PI/2)
+	fill(59,32,3)
+	ellipse(48,148,13)
+	//Right Leg
+	fill(59,32,3)
+	arc(33,134,85,47,PI/2,PI)
+	pop()
+	push()
+	scale(scaleC)
+	translate(xC+40,yC+146)
+	rotate(36*Math.PI/180)
+	fill(59,32,3)
+	arc(0,0,30,20,PI,8*Math.PI/180)
+	pop()
+	push()
+	scale(scaleC)
+	translate(xC,yC)
+	fill(59,32,3)
+	triangle(32,138,31,158,52,156)
+	//Shorts
+	fill(71,118,203)
+	arc(0,65,60,20,-5*Math.PI/180,185*Math.PI/180)
+	pop()
+	push()
+	scale(scaleC)
+	translate(xC-43,yC+83)
+	rotate(135*Math.PI/180)
+	fill(71,118,203)
+	arc(0,0,50,10,0,PI)
+	rect(-25,-36,50,37)
+	pop()
+	push()
+	scale(scaleC)
+	translate(xC,yC)
+	fill(71,118,203)
+	rect(-13,68,42,66)
+	ellipse(-13,73,10)
+	triangle(28,64,28,134,31,134)
+	arc(28,93,18,50,-100*Math.PI/180,85*Math.PI/180)
+	ellipse(29,117,5)
+	stroke(255)
+	strokeWeight(2)
+	bezier(15,65,22,72,13,76,21,100)
+	bezier(21,100,18,110,26,117,19,133)
+	noStroke()
+	//Right Arm Adjustment
+	fill(255,254,242)
+	triangle(50,0,59,6,46,12)
+	//Right Glove
+	fill(211,67,1)
+	rect(25,12,20,21)
+	ellipse(20,20,35,26)
+	fill(59,32,3)
+	ellipse(19,15,8,3)
+	pop()
+	push()
+	scale(scaleC)
+	fill(59,32,3)
+	translate(xC+14,yC+10)
+	rotate(-20*Math.PI/180)
+	ellipse(0,0,5,12)
+	fill(211,67,1)
+	rotate(20*Math.PI/180)
+	ellipse(3,0,6)
+	fill(211,67,1)
+	ellipse(-4,2,6)
+	pop()
+	push()
+	scale(scaleC)
+	translate(xC,yC)
+	//head
+	fill(59,32,3)
+	ellipse(-3,-63,45)
+	triangle(-25,-49,-15,-49,-22,-60)
+	ellipse(0,-84,5)
+	ellipse(4,-83,5)
+	ellipse(8,-81,5)
+	ellipse(15,-75,4)
+	ellipse(17,-71,4)
+	ellipse(18,-69,3)
+	ellipse(-4,-85,5)
+	ellipse(-12,-83,5)
+	ellipse(-16,-81,4)
+	ellipse(-21,-60,12,10)
+	ellipse(-24,-62,5)
+	ellipse(-23,-68,6)
+	ellipse(-20,-77,5)
+	triangle(10,-48,10,-70,60,-48)
+	pop()
+	push()
+	scale(scaleC)
+	fill(59,32,3)
+	translate(xC+29,yC-61)
+	rotate(24*Math.PI/180)
+	arc(0,0,20,4,PI,0)
+	pop()
+	push()
+	scale(scaleC)
+	fill(59,32,3)
+	translate(xC+47,yC-53)
+	rotate(24*Math.PI/180)
+	arc(0,0,20,4,PI,0)
+	pop()
+	//Left Leg
+	push()
+	scale(scaleC)
+	translate(xC-61,yC+100)
+	rotate(45*Math.PI/180)
+	fill(59,32,3)
+	rect(0,0,30,21)
+	rotate(-45*Math.PI/180)
+	fill(59,32,3)
+	arc(4,50,10,32,-PI/2,PI/2)
+	rotate(-20*Math.PI/180)
+	arc(-15,18,20,20,140*Math.PI/180,-40*Math.PI/180)
+	rotate(20*Math.PI/180)
+	rect(-10,20,14,46)
+	triangle(-18,23,-10,23,-10,67)
+	pop()
+	push()
+	scale(scaleC)
+	translate(xC,yC)
+	//LeftShoe
+	fill(211,67,1)
+	rect(-90,167,35,12,10)
+	rect(-72,164,18,15)
+	pop();
+}
+
+function katie(){
+	push();
+		translate(530,0);
+		fillAndStroke(medBlue);
+		rect(0,500,540,200);
+		setGradient(0,0,540,200,darkBlue,medBlue);
+		setGradient(0,200,540,450,medBlue,ltBlue);
+		cementThing();
+		mountains();
+		mountains();
+		sky();
+		moonMan(258,563);
+		moveMoon();1
+	pop();
+
+}
+function setGradient(x,y,w,h,c1,c2){
+	for (var i = y; i <= y+h; i++) {
+		var inter = map(i,y,y+h,0,1);
+		var c = lerpColor(c1,c2,inter);
+		stroke(c);
+		line(x,i,x+w,i);
+	}
+}
+function fillAndStroke(x,y,z){
+        fill(x,y,z);
+        stroke(x,y,z);
+}
+function moveMoon(){
+	push();
+		fillAndStroke(255,255,255);
+		translate(moonX,moonY);
+		console.log(moonX);
+		if ( hasBeenPunched==false && moonX < 530){
+			if( moonX < -20){
+				moon();
+				moonX += .8;
+				moonY += .7;
+			}else if( moonX = -20){
+			hasBeenPunched=true;
+			console.log(hasBeenPunched)
+			}
+		}
+		if (hasBeenPunched){
+			if(moonX> -275){
+				moon();
+				moonX -= 1;
+				moonY -= .80;
+			}else if(moonX=-275){
+				push();
+					moon();
+				pop();
+			}
+		}
+	pop();
+}
+function grass(x,y,h,dir){
+	fillAndStroke(0,125,77);	
+	if ( dir > 0){
+		beginShape();
+		  curveVertex(x-1,y);curveVertex(x-1,y);curveVertex(x,y-h+h/3);
+		  curveVertex(x+7,y-h);curveVertex(x+1,y-h+h/3);curveVertex(x,y);
+		  curveVertex(x,y);
+		endShape(CLOSE);
+	}else if ( dir < 0){
+		beginShape();
+		  curveVertex(x+1,y);curveVertex(x+1,y);curveVertex(x,y-h+h/3);
+		  curveVertex(x-7,y-h);curveVertex(x-1,y-h+h/3);curveVertex(x,y);
+		  curveVertex(x,y);
+		endShape(CLOSE);
+	}
+}
+function cloud(x,y,w,h){
+	fill(72,121,182,220);
+	noStroke();
+	arc(x,y,w/2,h,PI,0);	
+	arc(x-w/3,y,w/3,h/3,PI,0);
+	arc(x+w/4,y,w/3.5,h/2,PI,0);
+	triangle(x+w/3,y,x+w*2/3,y,x+w/5,y-h*1/5);
+}
+function star(x,y,r1,r2,points){
+	// code learned from p5 website //
+	fillAndStroke(255,255,255);
+	var angle = TWO_PI / points;
+	var halfAngle = angle/2.0;
+	beginShape();
+	for (var i = 0; i < TWO_PI; i += angle) {
+		var sx = x + cos(i) * r2;
+		var sy = y + sin(i) * r2;
+		vertex(sx,sy);
+		sx = x + cos(i+halfAngle) * r1;
+		sy = y + sin(i+halfAngle) * r1;
+		vertex(sx,sy);
+	}
+	endShape(CLOSE);
+}
+function cementThing(){
+	push();
+		translate(10,22);
+    // C E M E N T   B O X //
+		fillAndStroke(128,176,187); // s h a d o w
+		quad(446,578,445,598,461,610,462,578);
+		fillAndStroke(172,198,225); // h i g h l i g h t//
+		quad(463,578,461,605,496,628,492,578);
+	// B R O W N   B A R S //
+		strokeWeight(3);
+		fillAndStroke(135,112,58); // b r o w n //
+		line(452,577,451,529);line(487,575,485,526);line(453,554,468,528);
+		line(454,556,484,554);line(455,570,463,557);line(485,569,475,556);		
+	pop();
+}
+function moon(){
+	beginShape();
+	   curveVertex(253,51);curveVertex(253,51);curveVertex(274,65);
+	   curveVertex(287,84);curveVertex(293,107);curveVertex(290,131);
+	   curveVertex(279,150);curveVertex(268,160);curveVertex(253,165);
+	   curveVertex(275,170);curveVertex(299,159);curveVertex(316,138);
+	   curveVertex(322,115);curveVertex(319,91);curveVertex(306,70);
+	   curveVertex(289,56);curveVertex(273,51);curveVertex(273,51);
+	endShape();
+	
+}
+function sky(){
+// C L O U D //
+	noStroke();
+	fill(95,179,216,50);
+	beginShape();
+ 	   curveVertex(2,57);curveVertex(2,57);curveVertex(28,65);curveVertex(41,103);
+ 	   curveVertex(60,107);curveVertex(67,116);curveVertex(87,113);curveVertex(99,122);
+ 	   curveVertex(112,120);curveVertex(133,128);curveVertex(140,146);curveVertex(138,167);
+	   curveVertex(151,192);curveVertex(101,171);curveVertex(46,146);curveVertex(3,115);curveVertex(3,115);
+	endShape(CLOSE);
+	fill(32,110,174,70);
+	beginShape();
+	   curveVertex(4,117);curveVertex(4,117);curveVertex(20,124);curveVertex(26,133);
+	   curveVertex(55,126);curveVertex(86,131);curveVertex(120,149);curveVertex(146,185);
+	   curveVertex(159,198);curveVertex(172,221);curveVertex(206,227);curveVertex(226,241);
+	   curveVertex(248,247);curveVertex(254,272);curveVertex(281,282);curveVertex(292,302);
+	   curveVertex(278,314);curveVertex(265,320);curveVertex(203,302);curveVertex(167,277);
+	   curveVertex(139,260);curveVertex(105,256);curveVertex(70,233);curveVertex(55,191);curveVertex(73,184);
+	   curveVertex(57,157);curveVertex(35,154);curveVertex(3,133);curveVertex(3,133);
+	endShape(CLOSE);
+	fill(255,255,255);
+  // S T A R S //
+	star(220,25,8,15,15);star(367,522,6,9,10);star(470,10,3,4.5,7);
+	star(443,135,1,8,8);star(398,210,6,9.5,10);ellipse(454,199,1.8);
+	ellipse(471,211,1.4);ellipse(168,24,3.5);ellipse(125,17,2);
+	ellipse(158,79,1.8);ellipse(86,42,3.5);ellipse(21,39,3);
+	star(30,269,2,10,8);ellipse(101,222,4);ellipse(148,273,3.5);ellipse(196,301,2.5);
+	ellipse(68,290,1);star(478,426,4,6,12);triangle(473,428,448,409,476,423);
+	ellipse(483,140,8);ellipse(436,122,3.5);ellipse(306,30,5);ellipse(320,14,2.5);
+	ellipse(340,65,5.1);ellipse(62,435,2);ellipse(77,443,.5);ellipse(133,452,2);
+	ellipse(118,482,3.5);ellipse(183,466,3);ellipse(300,458,1);ellipse(324,514,.7);
+	ellipse(401,436,2);ellipse(349,409,.5);ellipse(331,377,2);ellipse(530,373,2);
+	ellipse(538,563,2);ellipse(533,585,1);
+    // U F O //
+	ellipse(59,54,13,15);;
+	beginShape();
+	   curveVertex(42,63);curveVertex(42,63);curveVertex(54,68);curveVertex(67,67);
+	   curveVertex(78,59);curveVertex(60,54);curveVertex(60,54);
+	endShape(CLOSE);
+	cloud(140,423,225,133);	
+	cloud(0,538,225,190);
+
+}
+function mountains(){
+	noStroke();
+	fill(145,157,82);
+	beginShape();
+ 	   vertex(0,630);vertex(100,600);vertex(155,590);
+	   vertex(230,565);vertex(288,565);vertex(485,630);
+	   vertex(550,680);vertex(550,800);vertex(0,800);vertex(0,550);
+	endShape();	
+	fill(81,68,22,70);
+	triangle(0,629,100,599,0,646);
+    // M O U N T A I N //	
+	beginShape();
+	   vertex(13,365);vertex(108,363);vertex(427,356);vertex(466,361);vertex(499,358);
+	   vertex(528,366);vertex(538,363);vertex(540,251);vertex(517,260);vertex(503,276);
+	   vertex(483,292);vertex(455,288);vertex(438,284);vertex(413,290);vertex(379,300);
+	   vertex(336,305);vertex(324,314);vertex(290,315);vertex(264,325);vertex(248,336);
+	   vertex(233,322);vertex(221,320);vertex(215,298);vertex(203,311);vertex(182,314);
+	   vertex(162,316);vertex(144,317);vertex(132,312);vertex(123,318);vertex(109,321);
+	   vertex(89,324);vertex(85,336);vertex(68,345);vertex(50,352);vertex(13,365);
+	endShape(CLOSE);
+  // R O C K S //
+    fill(112,84,60,125);
+	beginShape();
+	   vertex(150,576);vertex(151,573);vertex(185,558);vertex(188,560);
+ 	   vertex(212,590);vertex(208,622);vertex(153,619);vertex(150,52,72);
+	endShape();
+	ellipse(291,570,15,11);
+	ellipse(239,599,10,18);
+	ellipse(417,630,45);
+
+	quad(94,674,86,688,114,690,108,673);
+	quad(162,620,158,633,172,638,173,623);	
+	beginShape();
+	   vertex(246,653);vertex(257,640);vertex(310,619);vertex(329,620);
+	   vertex(352,638);vertex(363,688);vertex(313,718);vertex(264,719);vertex(246,653);
+	endShape(CLOSE);
+
+	fill(119,88,50,195);
+	beginShape();
+ 	   vertex(3,680);vertex(19,674);vertex(43,673);vertex(60,661);vertex(63,636);vertex(49,612);
+	   vertex(38,609);vertex(22,601);vertex(12,590);vertex(1,595);vertex(0,680);
+	endShape(CLOSE);
+
+    // G R A S S //
+	grass(71,720,48,1)
+	grass(373,720,27,1);
+	grass(519,697,39,1);
+	grass(222,720,38,-1);
+	grass(229,709,32,-1);
+	grass(70,720,41,-1);
+	grass(20,718,17,-1);
+	grass(135,718,17,-1);
+	grass(160,718,25,-1);
+	grass(433,704,32,-1);
+	grass(502,693,34,-1);
+}
+
+function moonMan(x,y){
+    translate(x,y)
+    scale(manScale);
+    // P A N T S //
+	fillAndStroke(255,143,69); // o r a n g e //	
+	beginShape();
+	   vertex(-2,0);vertex(5,0);vertex(9,-14);
+	   vertex(14,0);vertex(23,0);vertex(19,-22);
+	   vertex(-1,-23);vertex(-2,0);
+	endShape(CLOSE);
+    // H E A D //
+	push();
+		fillAndStroke(255,231,215); // s k i n //
+		translate(12,-72);
+		ellipse(-2.7,2,5,6);
+		rotate(radians(25));
+		ellipse(0,0,8.5,3.5);
+	pop();
+	push();
+		fillAndStroke(135,112,58);// b r o w n //
+		translate(9,-70);
+		line(-5,.5,1,.5);
+		line(2,-1.5,6,6);
+	pop();
+        fillAndStroke(224,212,65); // y e l l o w //
+	push();
+		translate(9,-75);
+		rotate(radians(150));
+		ellipse(0,0,14,9);
+	pop();
+    // C O A T //
+	beginShape();
+	  vertex(4,-68);vertex(-6,-54);vertex(-8,-37);vertex(-5,-33);vertex(-6,-9);
+	  vertex(5,-8);vertex(7,-18);vertex(11,-9);vertex(24,-9);vertex(23,-27);
+	  vertex(30,-26);vertex(24,-56);vertex(14,-67);vertex(6,-68);
+	endShape(CLOSE);	
+    // R O P E //
+	fillAndStroke(135,112,58);
+	beginShape();
+	   curveVertex(22,-60);curveVertex(22,-60);curveVertex(15,-46);
+	   curveVertex(22,-31);curveVertex(20,-50);curveVertex(21.5,-58);
+	endShape();			
+}
+
+function ryanSetup(){
+	background(255);
+
+	var mountainHeight = height - 7*height/16
+	var mountainWidth = ryan_rightside - 50
+	var mountainAngle = Math.atan(mountainHeight/mountainWidth)+.065
+	moveBoulder=false;
+//THE BOULDER HIMSELF (DWAYNE, THE BOULDER, JOHNSON)
+	push();
+		translate(manX, manY);
+		fill(222, 189, 86)
+		ellipse(35, -240, 315, 315)
+	pop();
+	
+//mountain
+
+	fill(94, 160, 212, 120);
+	triangle(50, height, ryan_rightside, height, ryan_rightside, 7*height/16);
+
+//foot ledge
+	push();
+		translate(50, height);
+		rotate(mountainAngle);
+		smooth();
+		beginShape();
+			vertex(0,0);
+			vertex(-15, -110);
+			vertex(0, -115);
+		endShape();
+		noSmooth();
+	pop();
+
+//ledge before boulder
+	push();
+		translate(277.25, 587);
+		rotate(mountainAngle);
+
+		beginShape();
+			vertex(0,0)
+			vertex(-20, -50)
+			vertex(-17, -68)
+			vertex(-20, -90)
+		
+			vertex(0, -180)
+		endShape();
+	pop();
+
+//last ledge
+	push();
+		translate(438.25, 436);
+		rotate(mountainAngle);
+
+		beginShape();
+			vertex(0,0);
+			vertex(-8, -90);
+			vertex(-4, -95);
+			vertex(0, -105);
+		endShape();
+
+	pop();
+
+
+//MYTH
+	textSize(96);
+	textStyle(BOLD)
+	textFont("Helvetica")
+	text("MYTH", 125, 150 )
+
+//MAN
+
+
+	push();
+		translate(manX, manY);
+		scale(manScale);
+		draw_man(mountainAngle)
+	pop();
+	if (manX < 653){
+			manX += manDX
+			manY -= manDX*(mountainHeight/mountainWidth)
+	
+	}
+
+//mouse x and y follower
+//	textSize(12)
+//	textStyle(NORMAL)
+//	fill(0)
+//	rect(mouseX +1, mouseY - 20, 80, 20)
+//	fill(255)
+//	text('(' + mouseX + ", " + mouseY + ")", mouseX + 1, mouseY -6)
+
+}
+/* HERE IS THE MOUSE CLICKING SHIT I TRIED
+function mouseClicked(){
+	if (mouseX>100 && mouseX<230 && mouseY>400 && mouseY<720){
+		moveBoulder=true;
+	}
+}*/
+function draw_man(mountainAngle)
+{
+	//MAN
+	fill(237, 124, 140)
+	push();
+
+		//torso
+		quad(-130, 0, -135, -100, -90, -80, -100, 10)
+		ellipse(-95, -70, 22, 24)
+		ellipse(-125, -8, 16, 20)
+
+		//right leg
+		push();
+			rotate(mountainAngle + .3)
+			ellipse(-43, 73, 30, 60)
+		pop();
+		ellipse(-60, 16, 20, 68)
+
+		//right foot
+		push();
+			rotate(mountainAngle)
+			beginShape();
+				vertex(-7, 79)
+				bezierVertex(0, 84, 2, 84, 4, 81)
+				bezierVertex(3, 63, 2, 58, 3, 57)
+				bezierVertex(-1, 45, -3, 45, -6, 50)
+			endShape()
+		pop();
+
+		//right arm
+		ellipse(-80, -70, 27, 20)
+		beginShape();
+			vertex(-80 ,-76);
+			vertex(-68, -65);
+			vertex(-45, -100);
+			vertex(-60, -100);
+		endShape();
+
+		//right hand
+		beginShape();
+			vertex(-60, -100);
+			bezierVertex(-62, -107, -62, -114, -58, -120);
+			bezierVertex(-56, -122, -50, -122, -43, -115);
+			bezierVertex(-46, -110, -46, -105, -45, -100);
+		endShape();
+
+		//this dudes hhheaaadd
+		beginShape();
+			vertex(-120, -93);
+			vertex(-115, -110);
+			bezierVertex(-112, -115, -104, -115,-95, -110);
+			bezierVertex(-90, -100, -100, -90, -93, -87);
+			vertex(-100, -80);
+		endShape();
+
+		//NOW LET'S HEAR IT FOR THE LEFT ARM WOOOO
+		beginShape();
+			vertex(-134, -95);
+			bezierVertex(-138, -110, -136, -120, -133, -125);
+			vertex(-115, -165);
+			vertex(-105, -160);
+			bezierVertex(-103, -125, -120, -115, -123, -95);
+		endShape();
+
+		//left hand
+		beginShape();
+			vertex(-115, -164); 
+			bezierVertex(-122, -170, -124, -175 ,-117, -190)
+			bezierVertex(-113, -192, -109, -192, -105, -190);
+			bezierVertex(-108, -181, -108, -177,-105, -173);
+			bezierVertex(-94, -181,-92, -179,-102, -169)
+			vertex(-105, -159);
+		endShape();
+
+		//left leg up in this myth, send that boulder sisyphus
+		beginShape();
+			vertex(-130,0);
+			vertex(-100,4);
+			bezierVertex(-105, 25, -105, 35, -120, 55);
+			vertex(-145, 55);
+		endShape();
+
+		beginShape();
+			vertex(-165, 95);
+			bezierVertex(-160, 75, -150, 60, -145, 54);
+			vertex(-120, 54);
+			vertex(-150, 95);
+		endShape();
+		quad(-165, 94, -150, 94, -160, 125, -170, 120);
+
+//left foot...last thing...so close...
+		beginShape();
+			vertex(-170, 119);
+			bezierVertex(-165, 140, -160, 135, -150, 126)
+			//vertex(-165, 135);
+			vertex(-135, 125);
+			vertex(-135, 120);
+			bezierVertex(-140, 115, -145, 115, -165, 120)
+		endShape();
+
+	pop();
+}
